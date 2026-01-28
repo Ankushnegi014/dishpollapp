@@ -16,7 +16,10 @@ export default function LoginPage() {
     const onSubmit = async (e) => {
         e.preventDefault();
         setError("");
-
+        if(form.username.trim() === '' && form.password.trim() === '') {
+            setError("Please enter Username and Password !");
+            return;
+        }
         const res = await login(form);
         if (!res.ok) {
             setError(res.message || "Login failed");
